@@ -13,10 +13,10 @@ async function getSpecificMessage(id){
     }
 }
 
-async function insertMessage({ userMessage, username }) {
+async function insertMessage(username,message) {
   await pool.query(
     "INSERT INTO messages (user_message, username) VALUES ($1,$2)",
-    [userMessage, username],
+    [message, username],
   );
 }
 

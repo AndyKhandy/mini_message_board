@@ -4,8 +4,8 @@
     </head>
     <body>
         <h1><%= title %></h1>
-        <% messages.forEach((message) => { %>
-            <h2>User</h2>
+        <% messages.forEach((message,index) => { %>
+            <h2>User <%= index+1%></h2>
             <%- include('messageInfo', {message}) %>
             <a href=<%= message.id%>>Open</a>
         <% }) %>
