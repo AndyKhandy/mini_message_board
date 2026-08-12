@@ -1,8 +1,11 @@
 import express from "express";
 import path from "node:path";
+import { loadEnvFile } from "node:process";
+
+loadEnvFile();
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.set("views", path.join(import.meta.dirname, "views"));
 app.set("view engine", "ejs");
@@ -13,18 +16,18 @@ app.use(express.static(assetsPath));
 
 const messages = [
   {
-    text: "Hi there!",
-    user: "Amando",
+    userMessage: "Hi there!",
+    username: "Amando",
     added: new Date(),
   },
   {
-    text: "There is my first blog kinda exciteddd",
-    user: "Andy Ta",
+    userMessage: "There is my first blog kinda exciteddd",
+    username: "Andy Ta",
     added: new Date(),
   },
   {
-    text: "Hello World!",
-    user: "Charles",
+    userMessage: "Hello World!",
+    username: "Charles",
     added: new Date(),
   },
 ];
@@ -39,8 +42,8 @@ app.get("/new", (req, res) => {
 
 app.post("/new", (req, res) => {
   messages.push({
-    text: req.body.message || "I hate pineapples",
-    user: req.body.user || "Guest",
+    userMessage: req.body.message || "I hate pineapples",
+    username: req.body.username || "Guest",
     added: new Date(),
   });
   res.redirect("/");
