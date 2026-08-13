@@ -1,10 +1,12 @@
 import express from "express";
 import path from "node:path";
-import { loadEnvFile } from "node:process";
 import indexRouter from "./routes/indexRouter.js";
 import newRouter from "./routes/newRouter.js";
+import process from "node:process";
 
-loadEnvFile();
+if (process.env.NODE_ENV !== "production"){
+    process.loadEnvFile();
+}
 
 const app = express();
 const port = process.env.PORT || 5000;

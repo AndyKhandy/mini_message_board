@@ -1,7 +1,9 @@
 import { Pool } from "pg";
-import { loadEnvFile } from "node:process";
+import process from "node:process";
 
-loadEnvFile();
+if (process.env.NODE_ENV !== "production"){
+    process.loadEnvFile();
+}
 
 export default new Pool({
   connectionString: process.env.DATABASE_URL,
